@@ -7,24 +7,41 @@ class App extends React.Component {
 
     this.state = {
       options: {
+        stroke: {
+          show: true,
+          curve: 'straight',
+          width: 2,      
+        },
+        legend: {
+          show: false
+        },
         chart: {
           width: "100%",
+          toolbar: {
+            show: false,
+          }
         },
         xaxis: {
           categories: ['Jan', 'Feb', 'March'],
+          axisBorder: {
+              show: true,
+              color: '#78909C',
+              offsetX: 0,
+              offsetY: 2
+          }
         },
         grid: {
           show: false,
         },
         markers: {
-          size: 10,
-          colors: undefined,
+          size: 7,
+          colors: '#5fa227',
           strokeColors: '#fff',
-          strokeWidth: 2,
+          strokeWidth: 0,
           strokeOpacity: 0.9,
           fillOpacity: 1,
           discrete: [],
-          shape: "square",
+          shape: "circle",
           radius: 2,
           offsetX: 0,
           offsetY: 0,
@@ -35,7 +52,13 @@ class App extends React.Component {
             sizeOffset: 3
           }
         },
-        colors: ['#fae877'],
+        colors: ['#f8de65','#5fa227'],
+        fill: {
+          type: 'gradient',
+              gradient: {
+                shadeIntensity: 0,
+              }
+        },
         responsive: [
           {
             breakpoint: 360,
@@ -45,19 +68,30 @@ class App extends React.Component {
                   horizontal: false
                 }
               },
-              legend: {
-                position: "bottom"
-              }
             }
           }
-        ]
+        ],
+        yaxis: {
+          show: true,
+          axisBorder: {
+              show: true,
+              color: '#78909C',
+              offsetX: 1,
+              offsetY: 2
+          }
+        },
+        plotOptions: {
+          bar: {
+              columnWidth: '50%'
+          }
+        },
       },
       series: [{
         type: 'column',
-        data: [1000, 129, 4]
+        data: [450, 350, 400]
       }, {
         type: 'line',
-        data: [80, 70, 40],
+        data: [480, 420, 450]
       }]
     }
   }
@@ -79,8 +113,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Chart options={this.state.options} series={this.state.series} width={500} height={320} />
-        <button onClick={this.onChange} >Change Graph</button>
+        <Chart options={this.state.options} series={this.state.series} width={300} height={300} />
+        {/* <button onClick={this.onChange} >Change Graph</button> */}
       </div>
     )
   }
